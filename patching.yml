@@ -1,0 +1,14 @@
+---
+- name: patch all linux serves using yum
+  hosts: all
+  become: true
+  tasks:
+    - name: perform yum update to patch all packages
+      yum:
+        name: "*"
+        state: latest
+      register: yum_update
+    - name: show yum update results
+      debug:
+        var: yum_update
+
